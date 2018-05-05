@@ -50,10 +50,10 @@ Future/Promise Model
 
 <!-- Based on [futures.state] -->
 
-#.  A <dfn>future</dfn> is an object that executes, on a executor, <dfn>continuations</dfn> that are passed an <dfn>asynchronous result</dfn> as a parameter.
+#.  A <dfn>future</dfn> is an object that executes, on a executor, <dfn>continuations</dfn> that are passed an [=asynchronous result=] as a parameter.
 
-  * A <dfn>unique future</dfn> moves from the [=asynchronous result=] and can have at most one [=continuation=] attached.
-  * A <dfn>shared future</dfn> copies from the [=asynchronous result=] and can have one or more [=continuations=] attached.
+  * A unique future moves from the [=asynchronous result=] and can have at most one [=continuation=] attached.
+  * A shared future copies from the [=asynchronous result=] and can have one or more [=continuations=] attached.
 
 #.  A <dfn>promise</dfn> is an object that produces an [=asynchronous result=] and is associated with a [=future=]. [ *Note:* Although a [=promise=] is associated with one [=future=], multiple [=shared future=] objects may refer to the same underlying [=shared future=]. - *end note* ]
 
@@ -94,7 +94,7 @@ Future/Promise Model
 
 If the lifetime of the [=future=] has ended, [=fulfillment=] has no effect.
 
-#. The lifetime of the [=continuations=] and the [=asynchronus result=] passed to the [=continuations=] shall last until execution of the [=continuations=] completes.
+#. The lifetime of the [=continuations=] and the [=asynchronous result=] passed to the [=continuations=] shall last until execution of the [=continuations=] completes.
       [ *Note:* The [=future=] may move (if it is a [=unique future=]) or copy (if it is a [=shared future=]) from the result into a new object to ensure this behavior. - *End Note* ]
       [ *Note:* The [=future=] may move from [=continuations=] into new object to ensure this behavior. - *End Note* ]
 
@@ -1176,7 +1176,7 @@ template<class Future>
 
  * *Throws:* If `f` becomes ready with an exception, that exception is rethrown.
 
-<br/>
+
 `FutureContinuation` helper functions
 -------------------------------------
 
@@ -1408,11 +1408,11 @@ template<class Executor>
     query(const Executor& ex, const promise_contract_t&);
 ```
  * *Returns:* A `std::pair` where the first value is a `std::promise<T>` and the
-  second is a `std::future<T>` such that the future was retrieved from the
-  promise.
+    second is a `std::future<T>` such that the future was retrieved from the
+    promise.
 
  * *Remarks:* This function shall not participate in overload resolution unless
-  `executor_future_t<Executor, T>` is `std::future<T>`.
+    `executor_future_t<Executor, T>` is `std::future<T>`.
 
 
 1.3.3.2 Cancellable promise contract
@@ -1468,11 +1468,11 @@ template<class Executor>
     query(const Executor& ex, const cancellable_promise_contract_t&);
 ```
  * *Returns:* A `std::pair` where the first value is a `std::promise<T>` and the
-  second is a `std::future<T>` such that the future was retrieved from the
-  promise.
+    second is a `std::future<T>` such that the future was retrieved from the
+    promise.
 
  * *Remarks:* This function shall not participate in overload resolution unless
-  `executor_future_t<Executor, T>` is `std::future<T>`.
+    `executor_future_t<Executor, T>` is `std::future<T>`.
 
 
 Proposed Modifications to Executors P0443
